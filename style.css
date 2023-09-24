@@ -36,7 +36,7 @@ body{
     width: auto;
 }
 .add-icon:hover {
-    fill: hsl(11, 24%, 60%);
+    fill: #b18981;
 }
 
 .add-message{
@@ -44,7 +44,7 @@ body{
     font-weight: 300;
     
     color:#22223B;
-
+    
 }
 
 dialog {
@@ -52,13 +52,83 @@ dialog {
     /* display: flex;
     justify-content: center;
     align-items: center; */
-    width: 50%;
-    height: 50%;
-    /* border: none; */
+    
+    /* width: 50%;
+    height: 50%; */
+
+    border: none;
     border-radius: 0.5rem;
     padding: 1rem;
+
+    background-color:#C9ADA7;
+    color: white;
+}
+dialog::backdrop{
+    opacity: 0;
+
+}
+
+form {
+    display: grid;
+    grid-template: repeat(5,0.5fr)/1fr;
+}
+
+.add-book form h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.add-book form>div{
+    margin-bottom: 0.5rem;
+}
+.add-book label,input{
+    display: inline-block;
+}
+
+.add-book div> label {
+    width: 4rem;
+}
+.add-book label+input {
+    width: 12rem;
+    height: 1.5rem;
+    padding-left: 0.3rem;
+    border-radius: 0.5rem;
+
+    outline: none;
+    font-weight: 600;
+}
+
+.add-book #book-author {
+    width: 10rem;
+}
+.add-book #book-pages{
+    width: 4rem;
+
+}
+ul{
+    list-style-type: none;
+    display: grid;
+    grid-template: 1fr/ 1fr 1fr;
+}
+li{
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.add-book button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: 600;
+}
+.add-book button:hover{
+    color: #b18981;
+}
+.add-book button:active {
+    background-color: #22223B;
+    color: #C9ADA7;
 }
 * {
-    outline: 1px solid olive;
+    /* outline: 1px solid olive; */
 
 }
