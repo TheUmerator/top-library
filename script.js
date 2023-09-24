@@ -1,4 +1,4 @@
-
+const myLibrary=[];
 
 function Book(title, author, pages, readStatus) {
     this.title = title;
@@ -14,5 +14,7 @@ Book.prototype.info = function () {
 
 const theHobbit = new Book('a', 'b', 'c', 'd');
 
-
+function addBookToLibrary(){
+    
+}
 
