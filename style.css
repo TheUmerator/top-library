@@ -48,20 +48,17 @@ body{
 }
 
 dialog {
-    /* background-color: #22223B; */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+
     
-    /* width: 50%;
-    height: 50%; */
 
     border: none;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 2rem;
 
     background-color:#C9ADA7;
     color: white;
+
+    margin: auto;
 }
 dialog::backdrop{
     opacity: 0;
