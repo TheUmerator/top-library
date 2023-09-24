@@ -32,8 +32,8 @@ body{
 }
 .add-icon {
     fill: hsl(11, 24%, 80%);
-    height: 193.44px;
-    width: 193.44px;
+    height: 12.09rem;
+    width: auto;
 }
 .add-icon:hover {
     fill: hsl(11, 24%, 60%);
@@ -43,11 +43,22 @@ body{
     font-size: 1.6rem;
     font-weight: 300;
     
-    /* color:hsl(11, 24%, 40%); */
     color:#22223B;
 
 }
+
+dialog {
+    /* background-color: #22223B; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    width: 50%;
+    height: 50%;
+    /* border: none; */
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
 * {
-    /* outline: 1px solid olive; */
+    outline: 1px solid olive;
 
 }

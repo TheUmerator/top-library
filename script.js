@@ -15,6 +15,15 @@ Book.prototype.info = function () {
 const theHobbit = new Book('a', 'b', 'c', 'd');
 
 function addBookToLibrary(){
-    
+
 }
 
+
+//DIALOG OPENING PROCESS
+
+const addButton=document.querySelector(".add-icon");
+const bookForm=document.querySelector('.add-book');
+
+addButton.addEventListener('click',()=>{
+    bookForm.showModal();
+})
