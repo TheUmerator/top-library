@@ -29,6 +29,10 @@ const addTitle = document.querySelector('.modal-title');
 
 const addForm = document.querySelector('.add-form');
 
+const AddContainer=document.querySelector('.add-container');
+const siteContainer=document.querySelector('.site-container');
+const bookContainer=document.querySelector('.book-container');
+
 addButton.addEventListener('click', () => {
     bookDialog.showModal();
 
@@ -37,8 +41,8 @@ addButton.addEventListener('click', () => {
     addForm.addEventListener('submit', e => {
         e.preventDefault();
 
-        const bookInfo = new FormData(addForm);
-        const obj = Object.fromEntries(bookInfo);
+        const bookInfo = new FormData(addForm);     //extracts from data to a new FormData Object
+        const obj = Object.fromEntries(bookInfo);   //divides it into key value pairs
 
 
         if (obj['book-name'] != '')
@@ -49,6 +53,11 @@ addButton.addEventListener('click', () => {
         addTitle.textContent='Add Book Name';
         bookDialog.close();
 
+
+        AddContainer.style.display='none';      //This clears the + button
+        siteContainer.classList.add('added');   //Adds .added to the classlist of the siteContainer
+        bookContainer.classList.add('visible');   //Adds .added to the classlist of the siteContainer
+
     })
 })
 /*
@@ -58,6 +67,7 @@ addButton.addEventListener('click', () => {
     COMPLETED
 
 2. Clear form data after pressing submit
+    COMPLETED .reset()
 
 3. Complete STAGE3 (Adding the Card after the
     form is submitted with the info)

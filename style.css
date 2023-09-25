@@ -8,6 +8,20 @@ body{
     height: 100vh;
 }
 
+.site-container.added{
+    display: block;
+    background-color: #b18981;
+}
+
+.book-container{
+    display: none;
+}
+
+.book-container.visible {
+    display: block;
+
+    
+}
 
 .site-container{
     height: 100%;
@@ -20,11 +34,18 @@ body{
     align-items: center;
 }
 
+
+
 .add-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+
+    /* REMOVE THIS WHEN */
+    /* display: none; */
+    /* FINISHED DESIGNING THE BOOK LAYOUT */
 
 }
 .add-box{
