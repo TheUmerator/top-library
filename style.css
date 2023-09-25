@@ -4,30 +4,52 @@
     box-sizing: border-box;
 
 }
-body{
+
+body {
     height: 100vh;
 }
 
-.site-container.added{
+
+.site-container.added {
     display: block;
-    background-color: #b18981;
 }
 
-.book-container{
+.book-container {
     display: none;
 }
 
 .book-container.visible {
-    display: block;
+    height: 100%;
+    background-color: #b18981;
 
-    
+    display: grid;
+    grid-template: 1fr 9fr/1fr;
 }
 
-.site-container{
+.book-container .header {
+    background-color: #9A8C98;
+    color: #22223B;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header h1 {
+    margin: 1rem;
+}
+
+.book-container .body {
+    background-color: #4A4E69;
+}
+
+.body .card-container {}
+
+
+.site-container {
     height: 100%;
     background-color: #F2E9E4;
 
-    font-family: 'Roboto',monospace;
+    font-family: 'Roboto', monospace;
 
     display: flex;
     justify-content: center;
@@ -41,70 +63,76 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 
     /* REMOVE THIS WHEN */
-    /* display: none; */
+    display: none;
     /* FINISHED DESIGNING THE BOOK LAYOUT */
 
 }
-.add-box{
 
-}
+.add-box {}
+
 .add-icon {
     fill: hsl(11, 24%, 80%);
     height: 12.09rem;
     width: auto;
 }
+
 .add-icon:hover {
     fill: #b18981;
 }
 
-.add-message{
+.add-message {
     font-size: 1.6rem;
     font-weight: 300;
-    
-    color:#22223B;
-    
+
+    color: #22223B;
+
 }
 
 dialog {
 
-    
+
 
     border: none;
     border-radius: 0.5rem;
     padding: 2rem;
 
-    background-color:#C9ADA7;
+    background-color: #C9ADA7;
     color: white;
 
     margin: auto;
 }
-dialog::backdrop{
+
+dialog::backdrop {
     opacity: 0;
 
 }
 
 form {
     display: grid;
-    grid-template: repeat(5,0.5fr)/1fr;
+    grid-template: repeat(5, 0.5fr)/1fr;
 }
 
 .add-book form h1 {
     text-align: center;
     margin-bottom: 1rem;
 }
-.add-book form>div{
+
+.add-book form>div {
     margin-bottom: 0.5rem;
 }
-.add-book label,input{
+
+.add-book label,
+input {
     display: inline-block;
 }
 
-.add-book div> label {
+.add-book div>label {
     width: 4rem;
 }
+
 .add-book label+input {
     width: 12rem;
     height: 1.5rem;
@@ -118,16 +146,19 @@ form {
 .add-book #book-author {
     width: 10rem;
 }
-.add-book #book-pages{
+
+.add-book #book-pages {
     width: 4rem;
 
 }
-ul{
+
+ul {
     list-style-type: none;
     display: grid;
     grid-template: 1fr/ 1fr 1fr;
 }
-li{
+
+li {
     text-align: center;
     margin-top: 0.5rem;
 }
@@ -139,14 +170,24 @@ li{
     border: none;
     font-weight: 600;
 }
-.add-book button:hover{
+
+.add-book button:hover {
     color: #b18981;
 }
+
 .add-book button:active {
     background-color: #22223B;
     color: #C9ADA7;
 }
+
 * {
-    /* outline: 1px solid olive; */
+    outline: 1px solid olive;
 
 }
+
+
+/* HOW TO RESET ORIGINAL SITE LAYOUT
+-REMOVE .added from .site-container html
+-REMOVE .visible from .book-container html
+-REMOVE display:none from .add-container css
+*/

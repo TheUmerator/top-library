@@ -60,15 +60,18 @@ addButton.addEventListener('click', () => {
 
     })
 })
+
+
 /*
-//WHAT TO DO FURTHER ON:
-1. Disable form submission and instead
-   reroute obtained information to an array
-    COMPLETED
+    HOW TO DO STAGE3:
 
-2. Clear form data after pressing submit
-    COMPLETED .reset()
+    HTML & CSS:
+- Lay out book-container layout in headers and body format
+-Create first book block layout with sample text
+-Create the additional book layout
+-Create a grid with both book layouts with book-container body as parent
+-Set grid up so that it starts wrapping after a certain book amount
 
-3. Complete STAGE3 (Adding the Card after the
-    form is submitted with the info)
+    JS:
+-We'll figure it out once we get the HTML & CSS portion nailed.
 */
