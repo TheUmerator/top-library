@@ -22,24 +22,24 @@
         </div>
 
         <dialog class="add-book">
-            <form>
+            <form class="add-form" id="foram">
                 <h1 class="modal-title">Add Book Name</h1>
                 <div>
                     <label for="book-name">Name:
                     </label>
-                    <input placeholder="Add Book Name" type="text" name="" id="book-name">
+                    <input placeholder="Add Book Name" type="text" name="book-name" id="book-name">
 
                 </div>
                 <div>
                     <label for="book-author">Author:
                     </label>
-                    <input placeholder="Add Book Author" type="text" name="" id="book-author">
+                    <input placeholder="Add Book Author" type="text" name="book-author" id="book-author">
 
                 </div>
                 <div>
                     <label for="book-pages">Pages:
                     </label>
-                    <input placeholder="#" type="number" name="" id="book-pages" min="1">
+                    <input placeholder="#" type="number" name="book-pages" id="book-pages" min="1">
 
                 </div>
                 <div>
@@ -50,7 +50,7 @@
                             </label></li>
                         <li>
                             <label for="book-unread">Unread
-                                <input type="radio" name="book-status" id="book-unread" value="unread">
+                                <input type="radio" name="book-status" id="book-unread" value="unread" checked>
                             </label></li>
                     </ul>
                 </div>
