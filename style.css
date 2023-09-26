@@ -98,7 +98,9 @@ body {
     background-color: #22223B;
     color: #F2E9E4;
 }
-
+.card .add-icon.card-icon {
+    /* height: 4rem; */
+}
 .site-container {
     height: 100%;
     background-color: #F2E9E4;

@@ -34,6 +34,8 @@ const siteContainer=document.querySelector('.site-container');
 const bookContainer=document.querySelector('.book-container');
 
 const cardContainer=document.querySelector('.card-container');
+const cardAddButton=addButton.cloneNode(true);
+
 
 addButton.addEventListener('click', () => {
     bookDialog.showModal();
@@ -75,7 +77,14 @@ addEventListener('keydown',(e)=>{
         console.log('deleted')
         cardContainer.removeChild(cardContainer.lastElementChild)
     }
-    if(e.key=='x'){
+    if(e.key=='a'){
+        const card=document.createElement('div');
+
+        card.classList.add('card');
+        
+        card.appendChild(cardAddButton);
+        cardAddButton.classList.add('card-icon');
+        cardContainer.appendChild(card);
     }
 
 })
