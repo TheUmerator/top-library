@@ -33,6 +33,8 @@ const AddContainer=document.querySelector('.add-container');
 const siteContainer=document.querySelector('.site-container');
 const bookContainer=document.querySelector('.book-container');
 
+const cardContainer=document.querySelector('.card-container');
+
 addButton.addEventListener('click', () => {
     bookDialog.showModal();
 
@@ -61,15 +63,30 @@ addButton.addEventListener('click', () => {
     })
 })
 
+addEventListener('keydown',(e)=>{
+    if (e.key=='c') {
+        console.log('created')
+
+        const card=document.createElement('div');
+        card.classList.add('card');
+        cardContainer.appendChild(card);
+    }
+    if(e.key=='d'){
+        console.log('deleted')
+        cardContainer.removeChild(cardContainer.lastElementChild)
+    }
+
+})
+
 
 /*
     HOW TO DO STAGE3:
 
     HTML & CSS:
-- Lay out book-container layout in headers and body format
--Create first book block layout with sample text
+-(DONE) Lay out book-container layout in headers and body format
+-(DONE) Create first book block layout with sample text
 -Create the additional book layout
--Create a grid with both book layouts with book-container body as parent
+-(DONE) Create a grid with both book layouts with book-container body as parent
 -Set grid up so that it starts wrapping after a certain book amount
 
     JS:

@@ -45,6 +45,9 @@ body {
 .body .card-container {
     margin: 1rem;
     background-color: #9A8C98;
+
+    display: grid;
+    grid-template: 1fr/repeat(5,1fr);
 }
 .card-container .card {
     background-color: #F2E9E4;
@@ -224,7 +227,7 @@ li {
 }
 
 * {
-    outline: 1px solid olive;
+    /* outline: 1px solid olive; */
 
 }
 
