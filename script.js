@@ -75,6 +75,8 @@ addEventListener('keydown',(e)=>{
         console.log('deleted')
         cardContainer.removeChild(cardContainer.lastElementChild)
     }
+    if(e.key=='x'){
+    }
 
 })
 
