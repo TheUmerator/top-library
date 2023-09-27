@@ -87,10 +87,21 @@ cardAddButton.addEventListener('click', () => {
             cardPages.textContent=myLibrary[bookCount - 1]['book-pages'];
             card.appendChild(cardPages);
 
+            /*
+                <div class="status">
+                <span class="read">READ</span>
+                <span>UNREAD</span></div>
+                <button class="remove">REMOVE</button>
+             */
 
             const cardStatus = document.createElement('div');
+            const cardRead=document.createElement('span');
+            const cardUnread=document.createElement('span');
             cardStatus.classList.add('status');
-
+            cardRead.classList.add('read');
+            cardUnread.classList.add('unread');
+            cardStatus.appendChild(cardRead);
+            cardStatus.appendChild(cardUnread);
             card.appendChild(cardStatus);
 
 
