@@ -45,10 +45,8 @@ body {
 
 .body .card-container {
     margin: 1rem;
-    /* background-color: #9A8C98; */
     display: grid;
     grid-template: 1fr/repeat(auto-fill, minmax(14rem, 2fr));
-    /* grid-template: 1fr/repeat(5,15rem); */
     gap: 1rem;
 
 }
@@ -62,7 +60,6 @@ body {
     width: 15rem;
     height: 18rem;
 
-    /* font-weight: 500; */
     display: grid;
     grid-template-rows: 3fr 1fr 2fr 1fr 1fr;
     gap: 0.5rem;
@@ -73,6 +70,7 @@ body {
     align-self: center;
 }
 
+/* THIS SHOULD BE A BUTTON TO REFLECT THE SELECTED CHOICE */
 .card .status {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -83,7 +81,7 @@ body {
     border-radius: 1rem;
     font-weight: 500;
 }
-
+/* NEED TO WIRE THIS UP TO THE JS PORTION TO REMOVE A BOOK */
 .card button {
     background-color: #F2E9E4;
     color: #22223B;
@@ -98,8 +96,16 @@ body {
     background-color: #22223B;
     color: #F2E9E4;
 }
+
+/* THIS IS WHEN THE CARD HAS AN ADD CLASS, THE + IS ADDED TO IT */
+.card.add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* THIS CHANGES THE + SO THAT IT FITS THE CARD */
 .card .add-icon.card-icon {
-    /* height: 4rem; */
+    height: 6rem;
 }
 .site-container {
     height: 100%;
