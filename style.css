@@ -84,7 +84,10 @@ body {
 .status button {
     font-weight: 600;
     background-color: #F2E9E4;
-
+}
+.status button.selected {
+    background-color: #22223B;
+    color: #F2E9E4;
 }
 .status .read{
     border-bottom-left-radius: 1rem;

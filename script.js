@@ -50,7 +50,7 @@ cardAddButton.addEventListener('click', () => {
         const obj = Object.fromEntries(bookInfo); //divides it into key value pairs
 
 
-        if (obj['book-name'] != '') {
+        if (obj['title'] != '') {
             bookCount++;
 
 
@@ -72,19 +72,19 @@ cardAddButton.addEventListener('click', () => {
 
             const cardName = document.createElement('h2');
             cardName.classList.add('name');
-            cardName.textContent=myLibrary[bookCount - 1]['book-name'];
+            cardName.textContent=myLibrary[bookCount - 1]['title'];
             card.appendChild(cardName);
 
 
             const cardAuthor = document.createElement('h3');
             cardAuthor.classList.add('author');
-            cardAuthor.textContent=myLibrary[bookCount - 1]['book-author'];
+            cardAuthor.textContent=myLibrary[bookCount - 1]['author'];
             card.appendChild(cardAuthor);
 
 
             const cardPages = document.createElement('div');
             cardPages.classList.add('pages');
-            cardPages.textContent=myLibrary[bookCount - 1]['book-pages'];
+            cardPages.textContent=myLibrary[bookCount - 1]['pages'];
             card.appendChild(cardPages);
 
             /*
@@ -95,17 +95,27 @@ cardAddButton.addEventListener('click', () => {
              */
 
             const cardStatus = document.createElement('div');
-            const cardRead=document.createElement('span');
-            const cardUnread=document.createElement('span');
+            const cardRead=document.createElement('button');
+            cardRead.textContent='READ';
+            const cardUnread=document.createElement('button');
+            cardUnread.textContent='UNREAD';
             cardStatus.classList.add('status');
             cardRead.classList.add('read');
             cardUnread.classList.add('unread');
+
+            if(myLibrary[bookCount - 1]['read-status']=='read')
+            cardRead.classList.add('selected');
+            
+            else
+            cardUnread.classList.add('selected');
+
             cardStatus.appendChild(cardRead);
             cardStatus.appendChild(cardUnread);
             card.appendChild(cardStatus);
 
 
             const cardRemove = document.createElement('button');
+            cardRemove.textContent='REMOVE';
             cardRemove.classList.add('remove');
 
             card.appendChild(cardRemove);
@@ -162,4 +172,9 @@ addEventListener('keydown', (e) => {
 -We also want to make the READ/UNREAD an actual button the user can click
  so that it actually changes the database on the back end. Speaking of,
 -We need the array of myLibrary to keep track of what we're doing.
+
+
+    WHAT TO DO WHEN I GET BACK FROM WORK:
+-Add .selected to status buttons to that the selected one will be removed
+ THERES MORE TO THIS ONE WE'LL HAVE TO TARGET THESE 
 */
