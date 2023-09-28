@@ -24,10 +24,12 @@ function addBookToLibrary() {
 const addButton = document.querySelector(".add-icon");
 const bookDialog = document.querySelector('.add-book');
 
-const bookName = document.querySelector('input[id="book-name"]');
+const bookName = document.querySelector('input[id="title"]');
 const addTitle = document.querySelector('.modal-title');
 
 const addForm = document.querySelector('.add-form');
+
+const submitButton=document.querySelector('.submit')
 
 const AddContainer = document.querySelector('.add-container');
 const siteContainer = document.querySelector('.site-container');
@@ -43,23 +45,32 @@ cardAddButton.addEventListener('click', () => {
 
     bookName.addEventListener("input", e => addTitle.textContent = e.target.value);
 
-    addForm.addEventListener('submit', e => {
+    // addForm.addEventListener('submit', e => {
+    submitButton.addEventListener('click', e => {
+
         e.preventDefault();
+        let book=new Book(document.getElementById('title').value,
+                          document.getElementById('author').value,
+                          document.getElementById('pages').value,
+                          document.querySelector('input[name="read-status"]:checked').value);
+                        //document.getElementById('read-status').value   
+        // const bookInfo = new FormData(addForm); //extracts from data to a new FormData Object
+        // const obj = Object.fromEntries(bookInfo); //divides it into key value pairs
 
-        const bookInfo = new FormData(addForm); //extracts from data to a new FormData Object
-        const obj = Object.fromEntries(bookInfo); //divides it into key value pairs
-
-
-        if (obj['title'] != '') {
+        if (book.title != '') {
+        // if (obj['title'] != '') {
             bookCount++;
 
+            myLibrary.push(book);
 
-            myLibrary.push(obj);
+            // myLibrary.push(obj);
+            console.log(book);
 
-
+            // console.log(obj);
             console.log(myLibrary);
             addForm.reset();
             addTitle.textContent = 'Add Book Name';
+            
             bookDialog.close();
 
 
@@ -103,7 +114,7 @@ cardAddButton.addEventListener('click', () => {
             cardRead.classList.add('read');
             cardUnread.classList.add('unread');
 
-            if(myLibrary[bookCount - 1]['read-status']=='read')
+            if(myLibrary[bookCount - 1]['readStatus']=='read')
             cardRead.classList.add('selected');
             
             else

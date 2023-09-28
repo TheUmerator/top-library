@@ -222,11 +222,11 @@ input {
     font-weight: 600;
 }
 
-.add-book #book-author {
+.add-book #author {
     width: 10rem;
 }
 
-.add-book #book-pages {
+.add-book #pages {
     width: 4rem;
 
 }
