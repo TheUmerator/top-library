@@ -14,30 +14,30 @@ Book.prototype.info = function () {
 
 
 
-function addBookToLibrary(book,bookCount) {
+function addBookToLibrary(book, bookCount) {
 
     const card = document.createElement('div');
-            
-    card.classList.add('card-'+bookCount);
+
+    card.classList.add('card-' + bookCount);
 
     const cardName = document.createElement('h2');
-    
-    cardName.classList.add('name-'+bookCount);
-    cardName.textContent=book.title;
+
+    cardName.classList.add('name-' + bookCount);
+    cardName.textContent = book.title;
     card.appendChild(cardName);
 
 
     const cardAuthor = document.createElement('h3');
-    
-    cardAuthor.classList.add('author-'+bookCount);
-    cardAuthor.textContent=book.author;
+
+    cardAuthor.classList.add('author-' + bookCount);
+    cardAuthor.textContent = book.author;
     card.appendChild(cardAuthor);
 
 
     const cardPages = document.createElement('div');
-    
-    cardPages.classList.add('pages-'+bookCount);
-    cardPages.textContent=book.pages;
+
+    cardPages.classList.add('pages-' + bookCount);
+    cardPages.textContent = book.pages;
     card.appendChild(cardPages);
 
     /*
@@ -48,21 +48,21 @@ function addBookToLibrary(book,bookCount) {
      */
 
     const cardStatus = document.createElement('div');
-    const cardRead=document.createElement('button');
-    
-    cardRead.textContent='READ';
-    const cardUnread=document.createElement('button');
-    cardUnread.textContent='UNREAD';
-    cardStatus.classList.add('status-'+bookCount);
+    const cardRead = document.createElement('button');
+
+    cardRead.textContent = 'READ';
+    const cardUnread = document.createElement('button');
+    cardUnread.textContent = 'UNREAD';
+    cardStatus.classList.add('status-' + bookCount);
     cardRead.classList.add('read');
     cardUnread.classList.add('unread');
 
 
-    if(book.readStatus=='read')
-    cardRead.classList.add('selected');
-    
+    if (book.readStatus == 'read')
+        cardRead.classList.add('selected');
+
     else
-    cardUnread.classList.add('selected');
+        cardUnread.classList.add('selected');
 
     cardStatus.appendChild(cardRead);
     cardStatus.appendChild(cardUnread);
@@ -70,8 +70,8 @@ function addBookToLibrary(book,bookCount) {
 
 
     const cardRemove = document.createElement('button');
-    cardRemove.textContent='REMOVE';
-    cardRemove.classList.add('remove-'+bookCount);
+    cardRemove.textContent = 'REMOVE';
+    cardRemove.classList.add('remove-' + bookCount);
     // cardRemove.setAttribute('id','remove');
     // cardRemove.classList.add('remove');
 
@@ -93,7 +93,7 @@ const addTitle = document.querySelector('.modal-title');
 
 const addForm = document.querySelector('.add-form');
 
-const submitButton=document.querySelector('.submit')
+const submitButton = document.querySelector('.submit')
 
 const AddContainer = document.querySelector('.add-container');
 const siteContainer = document.querySelector('.site-container');
@@ -127,10 +127,10 @@ cardAddButton.addEventListener('click', () => {
     submitButton.addEventListener('click', e => {
 
         e.preventDefault();
-        let book=new Book(document.getElementById('title').value,
-                          document.getElementById('author').value,
-                          document.getElementById('pages').value,
-                          document.querySelector('input[name="read-status"]:checked').value);
+        let book = new Book(document.getElementById('title').value,
+            document.getElementById('author').value,
+            document.getElementById('pages').value,
+            document.querySelector('input[name="read-status"]:checked').value);
 
         if (book.title != '') {
 
@@ -143,7 +143,7 @@ cardAddButton.addEventListener('click', () => {
             console.log(myLibrary);
             addForm.reset();
             addTitle.textContent = 'Add Book Name';
-            
+
             bookDialog.close();
 
 
@@ -152,27 +152,27 @@ cardAddButton.addEventListener('click', () => {
             bookContainer.classList.add('visible'); //Adds .added to the classlist of the siteContainer
 
             const card = document.createElement('div');
-            
-            card.classList.add('card-'+bookCount);
+
+            card.classList.add('card-' + bookCount);
 
             const cardName = document.createElement('h2');
-            
-            cardName.classList.add('name-'+bookCount);
-            cardName.textContent=book.title;
+
+            cardName.classList.add('name-' + bookCount);
+            cardName.textContent = book.title;
             card.appendChild(cardName);
 
 
             const cardAuthor = document.createElement('h3');
-            
-            cardAuthor.classList.add('author-'+bookCount);
-            cardAuthor.textContent=book.author;
+
+            cardAuthor.classList.add('author-' + bookCount);
+            cardAuthor.textContent = book.author;
             card.appendChild(cardAuthor);
 
 
             const cardPages = document.createElement('div');
-            
-            cardPages.classList.add('pages-'+bookCount);
-            cardPages.textContent=book.pages;
+
+            cardPages.classList.add('pages-' + bookCount);
+            cardPages.textContent = book.pages;
             card.appendChild(cardPages);
 
             /*
@@ -182,31 +182,22 @@ cardAddButton.addEventListener('click', () => {
                 <button class="remove">REMOVE</button>
              */
 
-            const cardStatus = document.createElement('div');
-            const cardRead=document.createElement('button');
-            
-            cardRead.textContent='READ';
-            const cardUnread=document.createElement('button');
-            cardUnread.textContent='UNREAD';
-            cardStatus.classList.add('status-'+bookCount);
-            cardRead.classList.add('read');
-            cardUnread.classList.add('unread');
 
+            const cardStatus = document.createElement('button');
+            cardStatus.classList.add('status-' + bookCount);
 
-            if(book.readStatus=='read')
-            cardRead.classList.add('selected');
-            
-            else
-            cardUnread.classList.add('selected');
+            if (book.readStatus == 'read') {
+                cardStatus.textContent = 'READ';
+                cardStatus.classList.add('selected');
+            } else
+                cardStatus.textContent = 'UNREAD';
 
-            cardStatus.appendChild(cardRead);
-            cardStatus.appendChild(cardUnread);
             card.appendChild(cardStatus);
 
 
             const cardRemove = document.createElement('button');
-            cardRemove.textContent='REMOVE';
-            cardRemove.classList.add('remove-'+bookCount);
+            cardRemove.textContent = 'REMOVE';
+            cardRemove.classList.add('remove-' + bookCount);
             // cardRemove.classList.add('remove');
 
 
@@ -224,46 +215,100 @@ cardAddButton.addEventListener('click', () => {
 })
 
 
-const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unread');
-const kiteRunner=new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
-const ninteenEighty=new Book('1984', 'George Orwell', '84', 'unread');
+// const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unread');
+// const kiteRunner=new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
+// const ninteenEighty=new Book('1984', 'George Orwell', '84', 'unread');
 
 
 
-addBookToLibrary(theHobbit,2);
-addBookToLibrary(kiteRunner,3);
-addBookToLibrary(ninteenEighty,4);
+// addBookToLibrary(theHobbit,2);
+// addBookToLibrary(kiteRunner,3);
+// addBookToLibrary(ninteenEighty,4);
 
 
 // EVENT DELEGATION, SURE
 
-cardContainer.addEventListener('click',(e)=>{
-  
-    const targ=e.target;
-    const buttonClass=e.target.classList.value;
-    if(targ.matches('[class*="remove"]'))
-    {
-        console.log("REMOVE");
-        console.log(buttonClass.substr(7,8));
-        
-        cardContainer.removeChild(document.querySelector('.card-'+buttonClass.substr(7,8)));
-    }
 
-    else if (targ.matches('[class*="read"]'))
-    console.log('READ');
+// TIME TO START OVER
 
-    else if (targ.matches('[class*="unread"]'))
-    console.log('UNREAD');
+// cardContainer.addEventListener('click',(e)=>{
 
-    // const buttonClass=e.target.classList.value;
+//     // const targ=e.target;
+//     // console.log(e.target);
 
-    // if(buttonClass=='[class*="remove"]')
-    // console.log('yes');
+//     // const buttonClass=e.target.classList.value;
+//     // console.log(buttonClass);
 
-    // console.log(e.target.classList.value);
-    // console.log(e.target);
+//     if(buttonClass.includes('remove'))
+//     {
+//         // console.log("REMOVE");
+//         // console.log(buttonClass.substr(7,8));
 
-})
+//         // cardContainer.removeChild(document.querySelector('.card-'+buttonClass.substr(7,8)));
+//     }
+
+//     // else if (targ.matches('[class*="read"]'))
+//     else if (buttonClass==('read')||buttonClass==('read selected'))
+//     {
+//         // const readClass=document.querySelectorAll()
+
+//     console.log('READ');
+// }
+
+//     else if (buttonClass==('unread')||buttonClass==('unread selected')){
+//     console.log('UNREAD');
+// }
+
+// // --------------------------------------------------------------------------------------------------------------
+
+// // cardContainer.addEventListener('click',(e)=>{
+
+// //     // const targ=e.target;
+// //     const buttonClass=e.target.classList.value;
+
+// //     // console.log(buttonClass);
+// //     // console.log(e.target);
+// //     console.log(buttonClass);
+// //     // if(targ.matches('[class*="remove"]'))
+// //     if(buttonClass.includes('remove'))
+// //     {
+// //         // console.log("REMOVE");
+// //         // console.log(buttonClass.substr(7,8));
+
+// //         // cardContainer.removeChild(document.querySelector('.card-'+buttonClass.substr(7,8)));
+// //     }
+
+// //     // else if (targ.matches('[class*="read"]'))
+// //     else if (buttonClass==('read')||buttonClass==('read selected'))
+// //     {
+// //         // buttonClass=read
+// //         console.log(document.querySelector('.'+buttonClass).closest('[class*="status"]'));
+// //         // const statusBox=buttonClass.closest('div');
+// //         // console.log(statusBox);
+// //     // console.log('READ');
+// // }
+
+// //     else if (buttonClass==('unread')||buttonClass==('unread selected')){
+// //     // console.log('UNREAD');
+// // }
+
+// // --------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+//     // const buttonClass=e.target.classList.value;
+
+//     // if(buttonClass=='[class*="remove"]')
+//     // console.log('yes');
+
+//     // console.log(e.target.classList.value);
+//     // console.log(e.target);
+
+// })
 
 
 // THIS WORKS HERE
