@@ -38,14 +38,13 @@ const bookContainer = document.querySelector('.book-container');
 const cardContainer = document.querySelector('.card-container');
 const cardAddButton = addButton.cloneNode(true);
 let bookCount = 0;
-// cardAddButton
-//addButton
+
 cardAddButton.addEventListener('click', () => {
     bookDialog.showModal();
 
     bookName.addEventListener("input", e => addTitle.textContent = e.target.value);
 
-    // addForm.addEventListener('submit', e => {
+
     submitButton.addEventListener('click', e => {
 
         e.preventDefault();
@@ -53,20 +52,16 @@ cardAddButton.addEventListener('click', () => {
                           document.getElementById('author').value,
                           document.getElementById('pages').value,
                           document.querySelector('input[name="read-status"]:checked').value);
-                        //document.getElementById('read-status').value   
-        // const bookInfo = new FormData(addForm); //extracts from data to a new FormData Object
-        // const obj = Object.fromEntries(bookInfo); //divides it into key value pairs
 
         if (book.title != '') {
-        // if (obj['title'] != '') {
+
             bookCount++;
 
             myLibrary.push(book);
 
-            // myLibrary.push(obj);
+
             console.log(book);
 
-            // console.log(obj);
             console.log(myLibrary);
             addForm.reset();
             addTitle.textContent = 'Add Book Name';
@@ -114,7 +109,8 @@ cardAddButton.addEventListener('click', () => {
             cardRead.classList.add('read');
             cardUnread.classList.add('unread');
 
-            if(myLibrary[bookCount - 1]['readStatus']=='read')
+            // if(myLibrary[bookCount - 1]['readStatus']=='read')
+            if(book.readStatus=='read')
             cardRead.classList.add('selected');
             
             else
@@ -167,25 +163,8 @@ addEventListener('keydown', (e) => {
 
 
 /*
-    HOW TO DO STAGE3:
+    WHAT TO DO NOW?
+-Make REMOVE button actually remove a book from myLibrary
+-use READ/UNREAD to toggle the states from read to unread
 
-    HTML & CSS:
--(DONE) Lay out book-container layout in headers and body format
--(DONE) Create first book block layout with sample text
--(DONE) Create the additional book layout
--(DONE) Create a grid with both book layouts with book-container body as parent
--(DONE) Set grid up so that it starts wrapping after a certain book amount
-
-    JS:
--Streamline the code so that its more readable
--We want the cards to reflect on the READ/UNREAD status, the selected 
- choice should select that button by default
--We also want to make the READ/UNREAD an actual button the user can click
- so that it actually changes the database on the back end. Speaking of,
--We need the array of myLibrary to keep track of what we're doing.
-
-
-    WHAT TO DO WHEN I GET BACK FROM WORK:
--Add .selected to status buttons to that the selected one will be removed
- THERES MORE TO THIS ONE WE'LL HAVE TO TARGET THESE 
 */
