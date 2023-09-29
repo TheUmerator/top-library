@@ -55,7 +55,6 @@ cardAddButton.addEventListener('click', () => {
 
         if (book.title != '') {
 
-            bookCount++;
 
             myLibrary.push(book);
 
@@ -74,23 +73,23 @@ cardAddButton.addEventListener('click', () => {
             bookContainer.classList.add('visible'); //Adds .added to the classlist of the siteContainer
 
             const card = document.createElement('div');
-            card.classList.add('card');
+            card.classList.add('card-'+bookCount);
 
             const cardName = document.createElement('h2');
-            cardName.classList.add('name');
-            cardName.textContent=myLibrary[bookCount - 1]['title'];
+            cardName.classList.add('name-'+bookCount);
+            cardName.textContent=book.title;
             card.appendChild(cardName);
 
 
             const cardAuthor = document.createElement('h3');
-            cardAuthor.classList.add('author');
-            cardAuthor.textContent=myLibrary[bookCount - 1]['author'];
+            cardAuthor.classList.add('author-'+bookCount);
+            cardAuthor.textContent=book.author;
             card.appendChild(cardAuthor);
 
 
             const cardPages = document.createElement('div');
-            cardPages.classList.add('pages');
-            cardPages.textContent=myLibrary[bookCount - 1]['pages'];
+            cardPages.classList.add('pages-'+bookCount);
+            cardPages.textContent=book.pages;
             card.appendChild(cardPages);
 
             /*
@@ -105,11 +104,11 @@ cardAddButton.addEventListener('click', () => {
             cardRead.textContent='READ';
             const cardUnread=document.createElement('button');
             cardUnread.textContent='UNREAD';
-            cardStatus.classList.add('status');
+            cardStatus.classList.add('status-'+bookCount);
             cardRead.classList.add('read');
             cardUnread.classList.add('unread');
 
-            // if(myLibrary[bookCount - 1]['readStatus']=='read')
+
             if(book.readStatus=='read')
             cardRead.classList.add('selected');
             
@@ -123,12 +122,14 @@ cardAddButton.addEventListener('click', () => {
 
             const cardRemove = document.createElement('button');
             cardRemove.textContent='REMOVE';
-            cardRemove.classList.add('remove');
+            cardRemove.classList.add('remove-'+bookCount);
 
             card.appendChild(cardRemove);
 
 
             cardContainer.appendChild(card);
+
+            bookCount++;
         }
 
 
@@ -164,6 +165,7 @@ addEventListener('keydown', (e) => {
 
 /*
     WHAT TO DO NOW?
+-seperate each card into it's myLibrary number
 -Make REMOVE button actually remove a book from myLibrary
 -use READ/UNREAD to toggle the states from read to unread
 

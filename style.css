@@ -52,7 +52,7 @@ body {
 }
 
 
-.card-container .card {
+.card-container [class^='card'] {
     background-color: #F2E9E4;
     border-radius: 0.8rem;
     padding: 1rem;
@@ -66,12 +66,12 @@ body {
     text-align: center;
 }
 
-.card .name {
+[class^='card'] [class^='name'] {
     align-self: center;
 }
 
 /* THIS SHOULD BE A BUTTON TO REFLECT THE SELECTED CHOICE */
-.card .status {
+[class^='card'] [class^='status'] {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
@@ -81,25 +81,25 @@ body {
 
 }
 /* NEED TO WIRE THESE UP TO SELECT BASED ON THE USER'S READ OR UNREAD */
-.status button {
+[class^='status'] button {
     font-weight: 600;
     background-color: #F2E9E4;
 }
-.status button.selected {
+[class^='status'] button.selected {
     background-color: #22223B;
     color: #F2E9E4;
 }
-.status .read{
+[class^='status'] .read{
     border-bottom-left-radius: 1rem;
     border-top-left-radius: 1rem;
 }
-.status .unread{
+[class^='status'] .unread{
     border-bottom-right-radius: 1rem;
     border-top-right-radius: 1rem;
 }
 
 /* NEED TO WIRE THIS UP TO THE JS PORTION TO REMOVE A BOOK */
-.card .remove {
+[class^='card'] [class^='remove'] {
     background-color: #F2E9E4;
     color: #22223B;
     border: 3px solid #22223B;
@@ -109,19 +109,19 @@ body {
     outline: none;
 }
 
-.card button:hover {
+[class^='card'] button:hover {
     background-color: #22223B;
     color: #F2E9E4;
 }
 
 /* THIS IS WHEN THE CARD HAS AN ADD CLASS, THE + IS ADDED TO IT */
-.card.add{
+[class^='card'].add{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 /* THIS CHANGES THE + SO THAT IT FITS THE CARD */
-.card .add-icon.card-icon {
+[class^='card'] .add-icon.card-icon {
     height: 6rem;
 }
 .site-container {
