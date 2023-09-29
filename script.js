@@ -12,10 +12,73 @@ Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.readStatus}`;
 }
 
-const theHobbit = new Book('a', 'b', 'c', 'd');
 
-function addBookToLibrary() {
 
+function addBookToLibrary(book,bookCount) {
+
+    const card = document.createElement('div');
+            
+    card.classList.add('card-'+bookCount);
+
+    const cardName = document.createElement('h2');
+    
+    cardName.classList.add('name-'+bookCount);
+    cardName.textContent=book.title;
+    card.appendChild(cardName);
+
+
+    const cardAuthor = document.createElement('h3');
+    
+    cardAuthor.classList.add('author-'+bookCount);
+    cardAuthor.textContent=book.author;
+    card.appendChild(cardAuthor);
+
+
+    const cardPages = document.createElement('div');
+    
+    cardPages.classList.add('pages-'+bookCount);
+    cardPages.textContent=book.pages;
+    card.appendChild(cardPages);
+
+    /*
+        <div class="status">
+        <span class="read">READ</span>
+        <span>UNREAD</span></div>
+        <button class="remove">REMOVE</button>
+     */
+
+    const cardStatus = document.createElement('div');
+    const cardRead=document.createElement('button');
+    
+    cardRead.textContent='READ';
+    const cardUnread=document.createElement('button');
+    cardUnread.textContent='UNREAD';
+    cardStatus.classList.add('status-'+bookCount);
+    cardRead.classList.add('read');
+    cardUnread.classList.add('unread');
+
+
+    if(book.readStatus=='read')
+    cardRead.classList.add('selected');
+    
+    else
+    cardUnread.classList.add('selected');
+
+    cardStatus.appendChild(cardRead);
+    cardStatus.appendChild(cardUnread);
+    card.appendChild(cardStatus);
+
+
+    const cardRemove = document.createElement('button');
+    cardRemove.textContent='REMOVE';
+    cardRemove.classList.add('remove-'+bookCount);
+    // cardRemove.classList.add('remove');
+
+
+    card.appendChild(cardRemove);
+
+
+    cardContainer.appendChild(card);
 }
 
 
@@ -37,7 +100,22 @@ const bookContainer = document.querySelector('.book-container');
 
 const cardContainer = document.querySelector('.card-container');
 const cardAddButton = addButton.cloneNode(true);
+
+
+
 let bookCount = 0;
+
+
+const card = document.createElement('div');
+
+card.classList.add('card');
+card.classList.add('add');
+
+card.appendChild(cardAddButton);
+cardAddButton.classList.add('card-icon');
+cardContainer.appendChild(card);
+
+
 
 cardAddButton.addEventListener('click', () => {
     bookDialog.showModal();
@@ -73,21 +151,25 @@ cardAddButton.addEventListener('click', () => {
             bookContainer.classList.add('visible'); //Adds .added to the classlist of the siteContainer
 
             const card = document.createElement('div');
+            
             card.classList.add('card-'+bookCount);
 
             const cardName = document.createElement('h2');
+            
             cardName.classList.add('name-'+bookCount);
             cardName.textContent=book.title;
             card.appendChild(cardName);
 
 
             const cardAuthor = document.createElement('h3');
+            
             cardAuthor.classList.add('author-'+bookCount);
             cardAuthor.textContent=book.author;
             card.appendChild(cardAuthor);
 
 
             const cardPages = document.createElement('div');
+            
             cardPages.classList.add('pages-'+bookCount);
             cardPages.textContent=book.pages;
             card.appendChild(cardPages);
@@ -101,6 +183,7 @@ cardAddButton.addEventListener('click', () => {
 
             const cardStatus = document.createElement('div');
             const cardRead=document.createElement('button');
+            
             cardRead.textContent='READ';
             const cardUnread=document.createElement('button');
             cardUnread.textContent='UNREAD';
@@ -123,6 +206,8 @@ cardAddButton.addEventListener('click', () => {
             const cardRemove = document.createElement('button');
             cardRemove.textContent='REMOVE';
             cardRemove.classList.add('remove-'+bookCount);
+            // cardRemove.classList.add('remove');
+
 
             card.appendChild(cardRemove);
 
@@ -137,36 +222,52 @@ cardAddButton.addEventListener('click', () => {
     })
 })
 
-addEventListener('keydown', (e) => {
-    if (e.key == 'c') {
-        console.log('created')
 
-        const card = document.createElement('div');
-        card.classList.add('card');
-        cardContainer.appendChild(card);
-    }
-    if (e.key == 'd') {
-        console.log('deleted')
-        cardContainer.removeChild(cardContainer.lastElementChild)
-    }
-    if (e.key == 'a') {
-        const card = document.createElement('div');
+const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unread');
+const kiteRunner=new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
+const ninteenEighty=new Book('1984', 'George Orwell', '84', 'unread');
 
-        card.classList.add('card');
-        card.classList.add('add');
 
-        card.appendChild(cardAddButton);
-        cardAddButton.classList.add('card-icon');
-        cardContainer.appendChild(card);
-    }
+addBookToLibrary(theHobbit,1);
+addBookToLibrary(kiteRunner,2);
+addBookToLibrary(ninteenEighty,3);
 
-})
+
+
+
+
+
+// addEventListener('keydown', (e) => {
+//     if (e.key == 'c') {
+//         console.log('created')
+
+//         const card = document.createElement('div');
+//         card.classList.add('card');
+//         cardContainer.appendChild(card);
+//     }
+//     if (e.key == 'd') {
+//         console.log('deleted')
+//         cardContainer.removeChild(cardContainer.lastElementChild)
+//     }
+//     if (e.key == 'a') {
+//         const card = document.createElement('div');
+
+//         card.classList.add('card');
+//         card.classList.add('add');
+
+//         card.appendChild(cardAddButton);
+//         cardAddButton.classList.add('card-icon');
+//         cardContainer.appendChild(card);
+//     }
+
+// })
 
 
 /*
     WHAT TO DO NOW?
 -seperate each card into it's myLibrary number
 -Make REMOVE button actually remove a book from myLibrary
+--This involves renumbering the elements so that the order is maintained
 -use READ/UNREAD to toggle the states from read to unread
 
 */
