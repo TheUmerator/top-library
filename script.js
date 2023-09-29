@@ -72,6 +72,7 @@ function addBookToLibrary(book,bookCount) {
     const cardRemove = document.createElement('button');
     cardRemove.textContent='REMOVE';
     cardRemove.classList.add('remove-'+bookCount);
+    // cardRemove.setAttribute('id','remove');
     // cardRemove.classList.add('remove');
 
 
@@ -228,12 +229,51 @@ const kiteRunner=new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
 const ninteenEighty=new Book('1984', 'George Orwell', '84', 'unread');
 
 
-addBookToLibrary(theHobbit,1);
-addBookToLibrary(kiteRunner,2);
-addBookToLibrary(ninteenEighty,3);
+
+addBookToLibrary(theHobbit,2);
+addBookToLibrary(kiteRunner,3);
+addBookToLibrary(ninteenEighty,4);
 
 
+// EVENT DELEGATION, SURE
 
+cardContainer.addEventListener('click',(e)=>{
+  
+    const targ=e.target;
+    const buttonClass=e.target.classList.value;
+    if(targ.matches('[class*="remove"]'))
+    {
+        console.log("REMOVE");
+        console.log(buttonClass.substr(7,8));
+        
+        cardContainer.removeChild(document.querySelector('.card-'+buttonClass.substr(7,8)));
+    }
+
+    else if (targ.matches('[class*="read"]'))
+    console.log('READ');
+
+    else if (targ.matches('[class*="unread"]'))
+    console.log('UNREAD');
+
+    // const buttonClass=e.target.classList.value;
+
+    // if(buttonClass=='[class*="remove"]')
+    // console.log('yes');
+
+    // console.log(e.target.classList.value);
+    // console.log(e.target);
+
+})
+
+
+// THIS WORKS HERE
+// ---------------------------------------------------------------------
+// const anyRemoveButton=document.querySelectorAll('[class*="remove"]');
+
+// anyRemoveButton.forEach((button)=>{
+//     button.addEventListener('click',()=>console.log('REMOVE'))
+// })
+// ---------------------------------------------------------------------
 
 
 
