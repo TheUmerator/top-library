@@ -91,6 +91,11 @@ body {
     background-color: #22223B;
     color: #F2E9E4;
 }
+[class^='card'] [class^='status'].selected:hover {
+    background-color: #F2E9E4;
+    color: #22223B;
+} 
+
 
 /* THIS IS WHEN THE CARD HAS AN ADD CLASS, THE + IS ADDED TO IT */
 [class^='card'].add{

@@ -47,32 +47,22 @@ function addBookToLibrary(book, bookCount) {
         <button class="remove">REMOVE</button>
      */
 
-    const cardStatus = document.createElement('div');
-    const cardRead = document.createElement('button');
 
-    cardRead.textContent = 'READ';
-    const cardUnread = document.createElement('button');
-    cardUnread.textContent = 'UNREAD';
+    const cardStatus = document.createElement('button');
     cardStatus.classList.add('status-' + bookCount);
-    cardRead.classList.add('read');
-    cardUnread.classList.add('unread');
 
+    if (book.readStatus == 'read') {
+        cardStatus.textContent = 'READ';
+        cardStatus.classList.add('selected');
+    } else
+        cardStatus.textContent = 'UNREAD';
 
-    if (book.readStatus == 'read')
-        cardRead.classList.add('selected');
-
-    else
-        cardUnread.classList.add('selected');
-
-    cardStatus.appendChild(cardRead);
-    cardStatus.appendChild(cardUnread);
     card.appendChild(cardStatus);
 
 
     const cardRemove = document.createElement('button');
     cardRemove.textContent = 'REMOVE';
     cardRemove.classList.add('remove-' + bookCount);
-    // cardRemove.setAttribute('id','remove');
     // cardRemove.classList.add('remove');
 
 
@@ -107,14 +97,14 @@ const cardAddButton = addButton.cloneNode(true);
 let bookCount = 0;
 
 
-const card = document.createElement('div');
+// const card = document.createElement('div');
 
-card.classList.add('card');
-card.classList.add('add');
+// card.classList.add('card');
+// card.classList.add('add');
 
-card.appendChild(cardAddButton);
-cardAddButton.classList.add('card-icon');
-cardContainer.appendChild(card);
+// card.appendChild(cardAddButton);
+// cardAddButton.classList.add('card-icon');
+// cardContainer.appendChild(card);
 
 
 
@@ -215,111 +205,44 @@ cardAddButton.addEventListener('click', () => {
 })
 
 
-// const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unread');
-// const kiteRunner=new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
-// const ninteenEighty=new Book('1984', 'George Orwell', '84', 'unread');
+const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unread');
+const kiteRunner = new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
+const ninteenEighty = new Book('1984', 'George Orwell', '84', 'unread');
 
 
 
-// addBookToLibrary(theHobbit,2);
-// addBookToLibrary(kiteRunner,3);
-// addBookToLibrary(ninteenEighty,4);
+addBookToLibrary(theHobbit, 2);
+addBookToLibrary(kiteRunner, 3);
+addBookToLibrary(ninteenEighty, 365);
 
 
 // EVENT DELEGATION, SURE
 
 
-// TIME TO START OVER
+// TIME TO START OVER, ONCE MORE WITH FEELING
 
-// cardContainer.addEventListener('click',(e)=>{
+cardContainer.addEventListener('click', (e) => {
+    const buttonClass = e.target.classList.value;
+    console.log(buttonClass);
 
-//     // const targ=e.target;
-//     // console.log(e.target);
+    if(buttonClass.includes('remove'))
+    {
+        const currentCard=document.querySelector('.card-'+buttonClass.substr(7,buttonClass.length));    //'.card-x'
+        cardContainer.removeChild(currentCard);
+    }
+    else if(buttonClass.includes('status')){
+        const currentCard=document.querySelector('.status-'+buttonClass.substr(7,buttonClass.length));    //'.card-x'
+        currentCard.classList.toggle('selected');
+        currentCard.textContent='READ';
+        console.log(currentCard);
+    }
+    // doesnt work
+    // else if(buttonClass.includes('selected')){
+    //     const buttonClass2=e.target.classList[0];
+    //     console.log(buttonClass2);
+    // }
 
-//     // const buttonClass=e.target.classList.value;
-//     // console.log(buttonClass);
-
-//     if(buttonClass.includes('remove'))
-//     {
-//         // console.log("REMOVE");
-//         // console.log(buttonClass.substr(7,8));
-
-//         // cardContainer.removeChild(document.querySelector('.card-'+buttonClass.substr(7,8)));
-//     }
-
-//     // else if (targ.matches('[class*="read"]'))
-//     else if (buttonClass==('read')||buttonClass==('read selected'))
-//     {
-//         // const readClass=document.querySelectorAll()
-
-//     console.log('READ');
-// }
-
-//     else if (buttonClass==('unread')||buttonClass==('unread selected')){
-//     console.log('UNREAD');
-// }
-
-// // --------------------------------------------------------------------------------------------------------------
-
-// // cardContainer.addEventListener('click',(e)=>{
-
-// //     // const targ=e.target;
-// //     const buttonClass=e.target.classList.value;
-
-// //     // console.log(buttonClass);
-// //     // console.log(e.target);
-// //     console.log(buttonClass);
-// //     // if(targ.matches('[class*="remove"]'))
-// //     if(buttonClass.includes('remove'))
-// //     {
-// //         // console.log("REMOVE");
-// //         // console.log(buttonClass.substr(7,8));
-
-// //         // cardContainer.removeChild(document.querySelector('.card-'+buttonClass.substr(7,8)));
-// //     }
-
-// //     // else if (targ.matches('[class*="read"]'))
-// //     else if (buttonClass==('read')||buttonClass==('read selected'))
-// //     {
-// //         // buttonClass=read
-// //         console.log(document.querySelector('.'+buttonClass).closest('[class*="status"]'));
-// //         // const statusBox=buttonClass.closest('div');
-// //         // console.log(statusBox);
-// //     // console.log('READ');
-// // }
-
-// //     else if (buttonClass==('unread')||buttonClass==('unread selected')){
-// //     // console.log('UNREAD');
-// // }
-
-// // --------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-//     // const buttonClass=e.target.classList.value;
-
-//     // if(buttonClass=='[class*="remove"]')
-//     // console.log('yes');
-
-//     // console.log(e.target.classList.value);
-//     // console.log(e.target);
-
-// })
-
-
-// THIS WORKS HERE
-// ---------------------------------------------------------------------
-// const anyRemoveButton=document.querySelectorAll('[class*="remove"]');
-
-// anyRemoveButton.forEach((button)=>{
-//     button.addEventListener('click',()=>console.log('REMOVE'))
-// })
-// ---------------------------------------------------------------------
-
+})
 
 
 // addEventListener('keydown', (e) => {
