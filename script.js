@@ -220,10 +220,12 @@ addBookToLibrary(ninteenEighty, 365);
 
 
 // TIME TO START OVER, ONCE MORE WITH FEELING
-
+    var buttonToggle=false;
 cardContainer.addEventListener('click', (e) => {
     const buttonClass = e.target.classList.value;
     console.log(buttonClass);
+    
+    console.log(e.target.classList);
 
     if(buttonClass.includes('remove'))
     {
@@ -231,16 +233,39 @@ cardContainer.addEventListener('click', (e) => {
         cardContainer.removeChild(currentCard);
     }
     else if(buttonClass.includes('status')){
-        const currentCard=document.querySelector('.status-'+buttonClass.substr(7,buttonClass.length));    //'.card-x'
-        currentCard.classList.toggle('selected');
-        currentCard.textContent='READ';
-        console.log(currentCard);
+
+        const currentStatus=document.querySelector('.status-'+e.target.classList[0].substr(7,buttonClass.length));    //'.status-x'
+
+        // const buttonClass2=e.target.classList[0];
+        console.log(currentStatus);
+        // console.log(e.target.classList[1]);
+
+        if(e.target.classList[1]==undefined){
+            currentStatus.classList.add('selected');
+            currentStatus.textContent='READ';
+        }
+        else {
+            currentStatus.classList.remove('selected');
+            currentStatus.textContent='UNREAD';
+
+        }
+
+
+
+        // const currentCard=document.querySelector('.status-'+buttonClass2.substr(7,buttonClass.length));    //'.card-x'
+        // currentCard.classList.toggle('selected');
+        // currentCard.textContent='READ';
+        // buttonToggle=true;
+        // console.log(currentCard);
     }
-    // doesnt work
-    // else if(buttonClass.includes('selected')){
-    //     const buttonClass2=e.target.classList[0];
-    //     console.log(buttonClass2);
-    // }
+    else if(buttonClass.includes('selected')){
+        
+        // const buttonClass2=e.target.classList[0];
+        // console.log(buttonClass2);
+        // const currentCard=document.querySelector('.status-'+buttonClass2.substr(7,buttonClass.length));    //'.card-x'
+        // currentCard.classList.toggle('selected');
+        // currentCard.textContent='UNREAD';
+    }
 
 })
 
