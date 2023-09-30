@@ -209,62 +209,119 @@ const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unr
 const kiteRunner = new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
 const ninteenEighty = new Book('1984', 'George Orwell', '84', 'unread');
 
+myLibrary.push(theHobbit,kiteRunner,ninteenEighty);
 
-
-addBookToLibrary(theHobbit, 2);
-addBookToLibrary(kiteRunner, 3);
-addBookToLibrary(ninteenEighty, 365);
+addBookToLibrary(theHobbit, 0);
+addBookToLibrary(kiteRunner, 1);
+addBookToLibrary(ninteenEighty, 2);
 
 
 // EVENT DELEGATION, SURE
 
 
 // TIME TO START OVER, ONCE MORE WITH FEELING
-    var buttonToggle=false;
 cardContainer.addEventListener('click', (e) => {
     const buttonClass = e.target.classList.value;
-    console.log(buttonClass);
+    // console.log(buttonClass);
     
-    console.log(e.target.classList);
+    // console.log(e.target.classList);
 
     if(buttonClass.includes('remove'))
     {
-        const currentCard=document.querySelector('.card-'+buttonClass.substr(7,buttonClass.length));    //'.card-x'
+        const removeIndex=buttonClass.substr(7,buttonClass.length); //'x'
+        // console.log(removeIndex);
+        myLibrary.splice(removeIndex,1);
+
+        const currentCard=document.querySelector('.card-'+removeIndex);    //'.card-x'
+        
+        // console.log('card-'+(+removeIndex+1));  //card-(x+1)
+
+        // console.log('library length is '+myLibrary.length);
+        for(i=removeIndex;i<myLibrary.length;i++) {
+            const nextIndex=+i+1;
+            var isSelected=false;
+            const nextCard=document.querySelector('.card-'+(nextIndex));    //'div.card-(x+1)'
+            const nextName=document.querySelector('.name-'+(nextIndex));
+            const nextAuthor=document.querySelector('.author-'+(nextIndex));
+            const nextpages=document.querySelector('.pages-'+(nextIndex));
+
+            const nextStatus=document.querySelector('.status-'+(nextIndex));
+
+            const nextRemove=document.querySelector('.remove-'+(nextIndex));
+            
+
+
+
+
+
+
+
+
+
+
+
+            nextCard.classList.remove('card-'+nextIndex);                   //div.card-(x+1)->div
+            
+            nextName.classList.remove('name-'+nextIndex);
+            nextAuthor.classList.remove('author-'+nextIndex);
+            nextpages.classList.remove('pages-'+nextIndex);
+
+
+
+            nextStatus.classList.remove('status-'+nextIndex);
+            if(nextStatus.classList[0]=='selected')
+            {
+                nextStatus.classList.remove('selected');
+                isSelected=true;
+            // console.log('contains selected');
+            }
+
+
+            nextRemove.classList.remove('remove-'+nextIndex);
+
+            nextCard.classList.add('card-'+i)                               //div->div.card-x
+            nextName.classList.add('name-'+i);
+            nextAuthor.classList.add('author-'+i);
+            nextpages.classList.add('pages-'+i);
+
+
+            nextStatus.classList.add('status-'+i);
+            if(isSelected==true){
+            nextStatus.classList.add('selected');
+
+            }
+
+
+            nextRemove.classList.add('remove-'+i);
+
+            nextCard.appendChild(nextName);
+            nextCard.appendChild(nextAuthor);
+            nextCard.appendChild(nextpages);
+            nextCard.appendChild(nextStatus);
+            nextCard.appendChild(nextRemove);
+
+        }
         cardContainer.removeChild(currentCard);
+
     }
     else if(buttonClass.includes('status')){
-
-        const currentStatus=document.querySelector('.status-'+e.target.classList[0].substr(7,buttonClass.length));    //'.status-x'
-
-        // const buttonClass2=e.target.classList[0];
-        console.log(currentStatus);
-        // console.log(e.target.classList[1]);
+        const changeIndex=e.target.classList[0].substr(7,buttonClass.length); //'x'
+        // console.log('changeIndex '+changeIndex);
+        const currentStatus=document.querySelector('.status-'+changeIndex);    //'.status-x'
+        // console.log(currentStatus);
 
         if(e.target.classList[1]==undefined){
             currentStatus.classList.add('selected');
+            myLibrary[changeIndex].readStatus='read';
             currentStatus.textContent='READ';
         }
         else {
             currentStatus.classList.remove('selected');
+            myLibrary[changeIndex].readStatus='unread';
+
             currentStatus.textContent='UNREAD';
 
         }
-
-
-
-        // const currentCard=document.querySelector('.status-'+buttonClass2.substr(7,buttonClass.length));    //'.card-x'
-        // currentCard.classList.toggle('selected');
-        // currentCard.textContent='READ';
-        // buttonToggle=true;
-        // console.log(currentCard);
-    }
-    else if(buttonClass.includes('selected')){
-        
-        // const buttonClass2=e.target.classList[0];
-        // console.log(buttonClass2);
-        // const currentCard=document.querySelector('.status-'+buttonClass2.substr(7,buttonClass.length));    //'.card-x'
-        // currentCard.classList.toggle('selected');
-        // currentCard.textContent='UNREAD';
     }
 
 })
@@ -297,10 +354,9 @@ cardContainer.addEventListener('click', (e) => {
 
 
 /*
-    WHAT TO DO NOW?
--seperate each card into it's myLibrary number
--Make REMOVE button actually remove a book from myLibrary
---This involves renumbering the elements so that the order is maintained
--use READ/UNREAD to toggle the states from read to unread
-
+    WHAT'S NEXT?
+-Add myLibrary integration
+-Target myLibrary values for the code to work properly.
+-Reattach STAGE1 to the project with conditions
+-
 */
