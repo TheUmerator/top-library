@@ -63,7 +63,7 @@ function addBookToLibrary(book, bookCount) {
     const cardRemove = document.createElement('button');
     cardRemove.textContent = 'REMOVE';
     cardRemove.classList.add('remove-' + bookCount);
-    // cardRemove.classList.add('remove');
+
 
 
     card.appendChild(cardRemove);
@@ -75,7 +75,6 @@ function addBookToLibrary(book, bookCount) {
 
 //DIALOG OPENING PROCESS
 
-const addButton = document.querySelector(".add-icon");
 const bookDialog = document.querySelector('.add-book');
 
 const bookName = document.querySelector('input[id="title"]');
@@ -90,130 +89,134 @@ const siteContainer = document.querySelector('.site-container');
 const bookContainer = document.querySelector('.book-container');
 
 const cardContainer = document.querySelector('.card-container');
-const cardAddButton = addButton.cloneNode(true);
+
 
 
 
 let bookCount = 0;
 
+const bothButtons = document.querySelectorAll('.add-icon');
+bothButtons.forEach((addButton) => {
+    addButton.addEventListener('click', () => {
+        bookDialog.showModal();
 
-// const card = document.createElement('div');
-
-// card.classList.add('card');
-// card.classList.add('add');
-
-// card.appendChild(cardAddButton);
-// cardAddButton.classList.add('card-icon');
-// cardContainer.appendChild(card);
+        bookName.addEventListener("input", e => addTitle.textContent = e.target.value);
 
 
+        submitButton.addEventListener('click', e => {
 
-cardAddButton.addEventListener('click', () => {
-    bookDialog.showModal();
+            e.preventDefault();
+            let book = new Book(document.getElementById('title').value,
+                document.getElementById('author').value,
+                document.getElementById('pages').value,
+                document.querySelector('input[name="read-status"]:checked').value);
 
-    bookName.addEventListener("input", e => addTitle.textContent = e.target.value);
+            if (book.title != '') {
 
+                
 
-    submitButton.addEventListener('click', e => {
-
-        e.preventDefault();
-        let book = new Book(document.getElementById('title').value,
-            document.getElementById('author').value,
-            document.getElementById('pages').value,
-            document.querySelector('input[name="read-status"]:checked').value);
-
-        if (book.title != '') {
+                myLibrary.push(book);
 
 
-            myLibrary.push(book);
+                console.log(book);
+
+                console.log(myLibrary);
+                addForm.reset();
+                addTitle.textContent = 'Add Book Name';
+
+                bookDialog.close();
 
 
-            console.log(book);
+                AddContainer.style.display = 'none'; //This clears the + button
+                siteContainer.classList.add('added'); //Adds .added to the classlist of the siteContainer
+                bookContainer.classList.add('visible'); //Adds .added to the classlist of the siteContainer
 
-            console.log(myLibrary);
-            addForm.reset();
-            addTitle.textContent = 'Add Book Name';
+                const card = document.createElement('div');
 
-            bookDialog.close();
+                card.classList.add('card-' + bookCount);
 
+                const cardName = document.createElement('h2');
 
-            AddContainer.style.display = 'none'; //This clears the + button
-            siteContainer.classList.add('added'); //Adds .added to the classlist of the siteContainer
-            bookContainer.classList.add('visible'); //Adds .added to the classlist of the siteContainer
-
-            const card = document.createElement('div');
-
-            card.classList.add('card-' + bookCount);
-
-            const cardName = document.createElement('h2');
-
-            cardName.classList.add('name-' + bookCount);
-            cardName.textContent = book.title;
-            card.appendChild(cardName);
+                cardName.classList.add('name-' + bookCount);
+                cardName.textContent = book.title;
+                card.appendChild(cardName);
 
 
-            const cardAuthor = document.createElement('h3');
+                const cardAuthor = document.createElement('h3');
 
-            cardAuthor.classList.add('author-' + bookCount);
-            cardAuthor.textContent = book.author;
-            card.appendChild(cardAuthor);
-
-
-            const cardPages = document.createElement('div');
-
-            cardPages.classList.add('pages-' + bookCount);
-            cardPages.textContent = book.pages;
-            card.appendChild(cardPages);
-
-            /*
-                <div class="status">
-                <span class="read">READ</span>
-                <span>UNREAD</span></div>
-                <button class="remove">REMOVE</button>
-             */
+                cardAuthor.classList.add('author-' + bookCount);
+                cardAuthor.textContent = book.author;
+                card.appendChild(cardAuthor);
 
 
-            const cardStatus = document.createElement('button');
-            cardStatus.classList.add('status-' + bookCount);
+                const cardPages = document.createElement('div');
 
-            if (book.readStatus == 'read') {
-                cardStatus.textContent = 'READ';
-                cardStatus.classList.add('selected');
-            } else
-                cardStatus.textContent = 'UNREAD';
-
-            card.appendChild(cardStatus);
+                cardPages.classList.add('pages-' + bookCount);
+                cardPages.textContent = book.pages;
+                card.appendChild(cardPages);
 
 
-            const cardRemove = document.createElement('button');
-            cardRemove.textContent = 'REMOVE';
-            cardRemove.classList.add('remove-' + bookCount);
-            // cardRemove.classList.add('remove');
+                const cardStatus = document.createElement('button');
+                cardStatus.classList.add('status-' + bookCount);
+
+                if (book.readStatus == 'read') {
+                    cardStatus.textContent = 'READ';
+                    cardStatus.classList.add('selected');
+                } else
+                    cardStatus.textContent = 'UNREAD';
+
+                card.appendChild(cardStatus);
 
 
-            card.appendChild(cardRemove);
+                const cardRemove = document.createElement('button');
+                cardRemove.textContent = 'REMOVE';
+                cardRemove.classList.add('remove-' + bookCount);
+                // cardRemove.classList.add('remove');
 
 
-            cardContainer.appendChild(card);
-
-            bookCount++;
-        }
+                card.appendChild(cardRemove);
 
 
+                cardContainer.appendChild(card);
 
+                bookCount++;
+
+                // cardContainer.removeChild(document.querySelector('.card.add'));
+
+                // IF THERE IS ALREADY A PLUS CARD CREATED, REMOVE IT
+                const prevAddCard=document.querySelector('.add');
+                if(prevAddCard!=null){
+                    cardContainer.removeChild(prevAddCard);
+                }
+                // console.log(prevAddCard);
+
+                const addCard = document.createElement('div');
+
+                addCard.classList.add('card');
+                addCard.classList.add('add');
+
+                addCard.appendChild(addButton);
+                addButton.classList.add('card-icon');
+                cardContainer.appendChild(addCard);
+            }
+
+
+
+        })
     })
 })
 
 
-const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unread');
-const kiteRunner = new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
-const ninteenEighty = new Book('1984', 'George Orwell', '84', 'unread');
 
-myLibrary.push(theHobbit,kiteRunner,ninteenEighty);
+// const theHobbit = new Book('The Lord Of The Rings', 'J.R.R. Tolkien', '65', 'unread');
+// const kiteRunner = new Book('The Kite Runner', 'Khaled Hosseini', '24', 'read');
+// const ninteenEighty = new Book('1984', 'George Orwell', '84', 'unread');
 
-addBookToLibrary(theHobbit, 0);
-addBookToLibrary(kiteRunner, 1);
-addBookToLibrary(ninteenEighty, 2);
+// myLibrary.push(theHobbit,kiteRunner,ninteenEighty);
+
+// addBookToLibrary(theHobbit, 0);
+// addBookToLibrary(kiteRunner, 1);
+// addBookToLibrary(ninteenEighty, 2);
 
 
 // EVENT DELEGATION, SURE
@@ -223,33 +226,30 @@ addBookToLibrary(ninteenEighty, 2);
 cardContainer.addEventListener('click', (e) => {
     const buttonClass = e.target.classList.value;
     // console.log(buttonClass);
-    
+
     // console.log(e.target.classList);
 
-    if(buttonClass.includes('remove'))
-    {
-        const removeIndex=buttonClass.substr(7,buttonClass.length); //'x'
+    if (buttonClass.includes('remove')) {
+        const removeIndex = buttonClass.substr(7, buttonClass.length); //'x'
         // console.log(removeIndex);
-        myLibrary.splice(removeIndex,1);
+        myLibrary.splice(removeIndex, 1);
 
-        const currentCard=document.querySelector('.card-'+removeIndex);    //'.card-x'
-        
+        const currentCard = document.querySelector('.card-' + removeIndex); //'.card-x'
+
         // console.log('card-'+(+removeIndex+1));  //card-(x+1)
 
         // console.log('library length is '+myLibrary.length);
-        for(i=removeIndex;i<myLibrary.length;i++) {
-            const nextIndex=+i+1;
-            var isSelected=false;
-            const nextCard=document.querySelector('.card-'+(nextIndex));    //'div.card-(x+1)'
-            const nextName=document.querySelector('.name-'+(nextIndex));
-            const nextAuthor=document.querySelector('.author-'+(nextIndex));
-            const nextpages=document.querySelector('.pages-'+(nextIndex));
+        for (i = removeIndex; i < myLibrary.length; i++) {
+            const nextIndex = +i + 1;
+            var isSelected = false;
+            const nextCard = document.querySelector('.card-' + (nextIndex)); //'div.card-(x+1)'
+            const nextName = document.querySelector('.name-' + (nextIndex));
+            const nextAuthor = document.querySelector('.author-' + (nextIndex));
+            const nextpages = document.querySelector('.pages-' + (nextIndex));
 
-            const nextStatus=document.querySelector('.status-'+(nextIndex));
+            const nextStatus = document.querySelector('.status-' + (nextIndex));
 
-            const nextRemove=document.querySelector('.remove-'+(nextIndex));
-            
-
+            const nextRemove = document.querySelector('.remove-' + (nextIndex));
 
 
 
@@ -260,39 +260,40 @@ cardContainer.addEventListener('click', (e) => {
 
 
 
-            nextCard.classList.remove('card-'+nextIndex);                   //div.card-(x+1)->div
-            
-            nextName.classList.remove('name-'+nextIndex);
-            nextAuthor.classList.remove('author-'+nextIndex);
-            nextpages.classList.remove('pages-'+nextIndex);
+
+
+            nextCard.classList.remove('card-' + nextIndex); //div.card-(x+1)->div
+
+            nextName.classList.remove('name-' + nextIndex);
+            nextAuthor.classList.remove('author-' + nextIndex);
+            nextpages.classList.remove('pages-' + nextIndex);
 
 
 
-            nextStatus.classList.remove('status-'+nextIndex);
-            if(nextStatus.classList[0]=='selected')
-            {
+            nextStatus.classList.remove('status-' + nextIndex);
+            if (nextStatus.classList[0] == 'selected') {
                 nextStatus.classList.remove('selected');
-                isSelected=true;
-            // console.log('contains selected');
+                isSelected = true;
+                // console.log('contains selected');
             }
 
 
-            nextRemove.classList.remove('remove-'+nextIndex);
+            nextRemove.classList.remove('remove-' + nextIndex);
 
-            nextCard.classList.add('card-'+i)                               //div->div.card-x
-            nextName.classList.add('name-'+i);
-            nextAuthor.classList.add('author-'+i);
-            nextpages.classList.add('pages-'+i);
+            nextCard.classList.add('card-' + i) //div->div.card-x
+            nextName.classList.add('name-' + i);
+            nextAuthor.classList.add('author-' + i);
+            nextpages.classList.add('pages-' + i);
 
 
-            nextStatus.classList.add('status-'+i);
-            if(isSelected==true){
-            nextStatus.classList.add('selected');
+            nextStatus.classList.add('status-' + i);
+            if (isSelected == true) {
+                nextStatus.classList.add('selected');
 
             }
 
 
-            nextRemove.classList.add('remove-'+i);
+            nextRemove.classList.add('remove-' + i);
 
             nextCard.appendChild(nextName);
             nextCard.appendChild(nextAuthor);
@@ -302,24 +303,23 @@ cardContainer.addEventListener('click', (e) => {
 
         }
         cardContainer.removeChild(currentCard);
+        bookCount--;
 
-    }
-    else if(buttonClass.includes('status')){
-        const changeIndex=e.target.classList[0].substr(7,buttonClass.length); //'x'
+    } else if (buttonClass.includes('status')) {
+        const changeIndex = e.target.classList[0].substr(7, buttonClass.length); //'x'
         // console.log('changeIndex '+changeIndex);
-        const currentStatus=document.querySelector('.status-'+changeIndex);    //'.status-x'
+        const currentStatus = document.querySelector('.status-' + changeIndex); //'.status-x'
         // console.log(currentStatus);
 
-        if(e.target.classList[1]==undefined){
+        if (e.target.classList[1] == undefined) {
             currentStatus.classList.add('selected');
-            myLibrary[changeIndex].readStatus='read';
-            currentStatus.textContent='READ';
-        }
-        else {
+            myLibrary[changeIndex].readStatus = 'read';
+            currentStatus.textContent = 'READ';
+        } else {
             currentStatus.classList.remove('selected');
-            myLibrary[changeIndex].readStatus='unread';
+            myLibrary[changeIndex].readStatus = 'unread';
 
-            currentStatus.textContent='UNREAD';
+            currentStatus.textContent = 'UNREAD';
 
         }
     }
@@ -355,8 +355,9 @@ cardContainer.addEventListener('click', (e) => {
 
 /*
     WHAT'S NEXT?
--Add myLibrary integration
--Target myLibrary values for the code to work properly.
--Reattach STAGE1 to the project with conditions
--
+-DONE   Add myLibrary integration
+-DONE   Target myLibrary values for the code to work properly.
+-DONE   Reattach STAGE1 to the project with conditions
+
+Congratulations.
 */
